@@ -5,9 +5,22 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="assets/css/style.css">
+    <script src="assets/js/script.js" type="module"></script>
     <title>Weather App</title>
 </head>
 <body>
-    <script src="assets/js/script.js"></script>
+    <header class="city_choice">
+        <h1 class="city_choice__title">Weather APP</h1>
+        <input type="text" name="inputCity" placeholder="Insert Location" class="city_choice__input_text">
+        <input type="button" value="Go" class="city_choice__button">
+    </header>
+    <main class="display_weather">
+        <section class="display_weather__section"></section>
+    </main>
+    <footer class="info_site">
+        <span class="info_site__tag">About</span>
+        <span class="info_site__tag">API</span>
+        <span class="info_site__tag">Contact</span>
+    </footer>   
 </body>
 </html>
