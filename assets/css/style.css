@@ -1,1 +1,9 @@
-/*# sourceMappingURL=style.css.map */
+.display_weather__section {
+  display: flex;
+  justify-content: space-around;
+}
+.display_weather__div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}/*# sourceMappingURL=style.css.map */

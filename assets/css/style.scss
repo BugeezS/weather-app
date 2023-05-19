@@ -1,0 +1,11 @@
+.display_weather{
+    &__section{
+        display: flex;
+        justify-content: space-around;
+    }
+    &__div{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+}
