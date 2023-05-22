@@ -38,6 +38,10 @@ export async function getLocation() {
                     const dayPt = document.createElement("p");
                     dayPt.textContent = forecastData.list[i * 8].main.temp + "°C";
                     dayDiv.appendChild(dayPt);
+
+                    const dayDate = document.createElement("p");
+                    dayDate.textContent = forecastData.list[i * 8].dt_txt;
+                    dayDiv.appendChild(dayDate);
                 }
             }
         });
