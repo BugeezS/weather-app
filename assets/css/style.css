@@ -9,4 +9,9 @@
   background-color: grey;
   border-radius: 25%;
   align-items: center;
+}
+.display_weather__chart {
+  width: 1800px;
+  display: flex;
+  align-content: center;
 }/*# sourceMappingURL=style.css.map */
