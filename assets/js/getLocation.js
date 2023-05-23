@@ -72,7 +72,7 @@ export async function getLocation() {
           dayDiv.appendChild(dayPt);
 
           const dayDate = document.createElement("p");
-          dayDate.textContent = forecastData.list[i * 8].dt_txt;
+          dayDate.textContent = forecastData.list[i * 8].dt_txt.split(" ")[0];
           dayDiv.appendChild(dayDate);
 
           // Store data for chart
