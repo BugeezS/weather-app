@@ -105,6 +105,8 @@ ul {
   background-color: rgba(209, 192, 192, 0.8);
   list-style: none;
   line-height: 50px;
+  position: absolute;
+  width: 300px;
 }
 
 .imgMet {
