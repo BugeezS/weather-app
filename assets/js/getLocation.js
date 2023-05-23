@@ -46,6 +46,23 @@ export async function getLocation() {
           dayDiv.classList.add(divClass);
           section.appendChild(dayDiv);
 
+          if (forecastData.list[i * 8].weather[0].main === "Clouds") {
+            const imgMet = document.createElement("img");
+            imgMet.classList.add("imgMet");
+            imgMet.src = "./assets/img/nuageux.png";
+            dayDiv.appendChild(imgMet);
+          } else if (forecastData.list[i * 8].weather[0].main === "Clear") {
+            const imgMet = document.createElement("img");
+            imgMet.classList.add("imgMet");
+            imgMet.src = "./assets/img/clair.png";
+            dayDiv.appendChild(imgMet);
+          } else if (forecastData.list[i * 8].weather[0].main === "Rain") {
+            const imgMet = document.createElement("img");
+            imgMet.classList.add("imgMet");
+            imgMet.src = "./assets/img/rain.png";
+            dayDiv.appendChild(imgMet);
+          }
+
           const dayP = document.createElement("p");
           dayP.textContent = forecastData.list[i * 8].weather[0].main;
           dayDiv.appendChild(dayP);
@@ -70,6 +87,10 @@ export async function getLocation() {
 
         // Create chart
         createChart(labels, temperatures);
+
+        // Store input and data in local storage
+        localStorage.setItem("inputCity", inputCity.value);
+        localStorage.setItem("forecastData", JSON.stringify(forecastData));
       }
     };
 
@@ -133,6 +154,16 @@ export async function getLocation() {
     };
 
     inputCity.addEventListener("keypress", handleInputKeyPress);
+
+    // Restore input and data from local storage if available
+    const storedInput = localStorage.getItem("inputCity");
+    const storedForecastData = localStorage.getItem("forecastData");
+
+    if (storedInput && storedForecastData) {
+      inputCity.value = storedInput;
+      const forecastData = JSON.parse(storedForecastData);
+      createChart(forecastData.labels, forecastData.temperatures);
+    }
   } catch (error) {
     console.error(error);
     // Show an error message to the user
