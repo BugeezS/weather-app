@@ -1,17 +1,22 @@
-const inputCity = document.querySelector('.city_choice__input_text');
-const buttonCity = document.querySelector('.city_choice__button');
-const section = document.querySelector('.display_weather__section');
-const divClass = 'display_weather__div';
+const inputCity = document.querySelector(".city_choice__input_text");
+const buttonCity = document.querySelector(".city_choice__button");
+const section = document.querySelector(".display_weather__section");
+const divClass = "display_weather__div";
+let temperatureChart; // Variable to store the chart instance
 
 export async function getLocation() {
   try {
     const handleButtonClick = async () => {
       // Clear existing div elements
-      section.querySelectorAll('.' + divClass).forEach((div) => {
+      section.querySelectorAll("." + divClass).forEach((div) => {
         div.remove();
       });
 
-      const response = await fetch("http://api.openweathermap.org/geo/1.0/direct?q=" + inputCity.value + "&appid=b966343bfc8e28ecda651af14caf032a");
+      const response = await fetch(
+        "http://api.openweathermap.org/geo/1.0/direct?q=" +
+          inputCity.value +
+          "&appid=b966343bfc8e28ecda651af14caf032a"
+      );
       const jsonResponse = await response.json();
 
       if (jsonResponse.length > 0) {
@@ -20,7 +25,13 @@ export async function getLocation() {
         const lon = locationData.lon;
 
         const fetchMeteo = async (lat, lon) => {
-          const response = await fetch("https://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&appid=b966343bfc8e28ecda651af14caf032a&units=metric");
+          const response = await fetch(
+            "https://api.openweathermap.org/data/2.5/forecast?lat=" +
+              lat +
+              "&lon=" +
+              lon +
+              "&appid=b966343bfc8e28ecda651af14caf032a&units=metric"
+          );
           return response.json();
         };
 
@@ -52,70 +63,80 @@ export async function getLocation() {
           temperatures.push(forecastData.list[i * 8].main.temp);
         }
 
+        // Clear existing chart if it exists
+        if (temperatureChart) {
+          temperatureChart.destroy();
+        }
+
         // Create chart
-        const ctx = document.getElementById('temperatureChart').getContext('2d');
-        const temperatureChart = new Chart(ctx, {
-          type: 'line',
-          data: {
-            labels: labels,
-            datasets: [
-              {
-                label: 'Temperature',
-                data: temperatures,
-                backgroundColor: 'rgba(0, 123, 255, 1)',
-                borderColor: 'rgba(0, 123, 255, 1)',
-                borderWidth: 1
-              }
-            ]
-          },
-          options: {
-            responsive: true,
-            scales: {
-              y: {
-                beginAtZero: true
-              }
-            },
-            plugins: {
-              legend: {
-                labels: {
-                  font: {
-                    color: 'black'
-                  }
-                }
-              },
-              tooltip: {
-                backgroundColor: 'white',
-                titleColor: 'black',
-                bodyColor: 'black',
-                borderColor: 'black',
-                borderWidth: 1
-              }
-            },
-            layout: {
-              padding: {
-                left: 10,
-                right: 10,
-                top: 10,
-                bottom: 10
-              }
-            }
-          }
-        });
+        createChart(labels, temperatures);
       }
     };
 
-    buttonCity.addEventListener('click', handleButtonClick);
+    const createChart = (labels, temperatures) => {
+      const ctx = document.getElementById("temperatureChart").getContext("2d");
+      temperatureChart = new Chart(ctx, {
+        type: "line",
+        data: {
+          labels: labels,
+          datasets: [
+            {
+              label: "Temperature",
+              data: temperatures,
+              backgroundColor: "rgba(0, 123, 255, 1)",
+              borderColor: "rgba(0, 123, 255, 1)",
+              borderWidth: 1,
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          scales: {
+            y: {
+              beginAtZero: true,
+            },
+          },
+          plugins: {
+            legend: {
+              labels: {
+                font: {
+                  color: "black",
+                },
+              },
+            },
+            tooltip: {
+              backgroundColor: "white",
+              titleColor: "black",
+              bodyColor: "black",
+              borderColor: "black",
+              borderWidth: 1,
+            },
+          },
+          layout: {
+            padding: {
+              left: 10,
+              right: 10,
+              top: 10,
+              bottom: 10,
+            },
+          },
+        },
+      });
+    };
+
+    buttonCity.addEventListener("click", handleButtonClick);
+
     const handleInputKeyPress = (event) => {
-        if (event.key === 'Enter') {
-          handleButtonClick();
-        }
-      };
-  
-      inputCity.addEventListener('keypress', handleInputKeyPress);
-    } catch (error) {
-      console.error(error);
-      // Show an error message to the user
-      section.innerHTML = '<p class="citation__error">Failed to fetch data. Please try again later.</p>';
-    }
+      if (event.key === "Enter") {
+        handleButtonClick();
+      }
+    };
+
+    inputCity.addEventListener("keypress", handleInputKeyPress);
+  } catch (error) {
+    console.error(error);
+    // Show an error message to the user
+    section.innerHTML =
+      '<p class="citation__error">Failed to fetch data. Please try again later.</p>';
   }
-  
+}
