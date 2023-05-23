@@ -1,31 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/css/style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="assets/css/style.css" />
     <script src="assets/js/script.js" type="module"></script>
     <title>Weather App</title>
-</head>
-<body>
+  </head>
+  <body>
     <header class="city_choice">
-        <h1 class="city_choice__title">Weather APP</h1>
-        <input type="text" name="inputCity" placeholder="Insert Location" class="city_choice__input_text">
-        <input type="button" value="Go" class="city_choice__button">
+      <h1 class="city_choice__title">Weather APP</h1>
+      <div class="search_box">
+        <button class="city_choice__button"></button>
+        <input
+          type="text"
+          name="inputCity"
+          placeholder="Insert Location"
+          class="city_choice__input_text"
+        />
+        <ul class="autocomplete-list"></ul>
+      </div>
     </header>
     <main class="display_weather">
-        <section class="display_weather__section"></section>
-        <div class="display_weather__chart">
-            <canvas id="temperatureChart"></canvas>
-        </div>
-        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
+      <section class="display_weather__section"></section>
+      <div class="display_weather__chart">
+        <canvas id="temperatureChart"></canvas>
+      </div>
+      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     </main>
     <footer class="info_site">
-        <span class="info_site__tag">About</span>
-        <span class="info_site__tag">API</span>
-        <span class="info_site__tag">Contact</span>
-    </footer>   
-</body>
+      <span class="info_site__tag">About</span>
+      <span class="info_site__tag">API</span>
+      <span class="info_site__tag">Contact</span>
+    </footer>
+  </body>
 </html>

@@ -1,3 +1,15 @@
+body {
+  background-color: #22a6b3;
+}
+
+.search_box {
+  width: -moz-fit-content;
+  width: fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  position: relative;
+}
+
 .display_weather__section {
   display: flex;
   justify-content: space-around;
@@ -6,12 +18,84 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background-color: grey;
-  border-radius: 25%;
+  background-color: rgba(209, 192, 192, 0.5);
+  border-radius: 20px;
   align-items: center;
+  padding: 10px 10px 10px 10px;
 }
 .display_weather__chart {
   width: 1800px;
+  background-color: rgba(209, 192, 192, 0.8);
+  margin-left: 50px;
+  margin-top: 50px;
+  border-radius: 25px;
+}
+
+#temperatureChart {
+  justify-self: center;
+}
+
+.city_choice {
   display: flex;
-  align-content: center;
+  justify-content: space-between;
+}
+.city_choice__title {
+  color: white;
+}
+.city_choice__input_text {
+  height: 50px;
+  width: 50px;
+  border-style: none;
+  padding: 10px;
+  font-size: 18px;
+  letter-spacing: 2px;
+  outline: none;
+  border-radius: 25px;
+  transition: all 0.5s ease-in-out;
+  background-color: #22a6b3;
+  padding-right: 40px;
+  color: #fff;
+  text-align: center;
+}
+.city_choice__input_text::-moz-placeholder {
+  color: rgb(255, 255, 255);
+  font-size: 18px;
+  letter-spacing: 2px;
+  font-weight: 100;
+}
+.city_choice__input_text::placeholder {
+  color: rgb(255, 255, 255);
+  font-size: 18px;
+  letter-spacing: 2px;
+  font-weight: 100;
+}
+.city_choice__input_text:focus {
+  width: 300px;
+  border-radius: 0px;
+  background-color: transparent;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+  transition: all 500ms cubic-bezier(0, 0.11, 0.35, 2);
+  text-align: center;
+}
+.city_choice__button {
+  width: 50px;
+  height: 50px;
+  border-style: none;
+  font-size: 20px;
+  font-weight: bold;
+  outline: none;
+  cursor: pointer;
+  border-radius: 50%;
+  position: absolute;
+  right: 0px;
+  color: #ffffff;
+  background-color: transparent;
+  pointer-events: painted;
+}
+.city_choice__button:focus ~ .city_choice__input_text {
+  width: 300px;
+  border-radius: 0px;
+  background-color: transparent;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+  transition: all 500ms cubic-bezier(0, 0.11, 0.35, 2);
 }/*# sourceMappingURL=style.css.map */
