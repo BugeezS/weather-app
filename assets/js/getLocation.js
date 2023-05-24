@@ -13,7 +13,7 @@ export async function getLocation() {
       });
 
       const response = await fetch(
-        "http://api.openweathermap.org/geo/1.0/direct?q=" +
+        "https://api.openweathermap.org/geo/1.0/direct?q=" +
           inputCity.value +
           "&appid=b966343bfc8e28ecda651af14caf032a"
       );

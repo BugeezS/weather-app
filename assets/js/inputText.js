@@ -35,7 +35,7 @@ button.addEventListener("click", () => {
 
 export function fetchCityNames(query) {
   const username = "bugeez"; // Replace with your GeoNames username
-  const url = `http://api.geonames.org/searchJSON?q=${query}&maxRows=5&username=${username}`;
+  const url = `https://api.geonames.org/searchJSON?q=${query}&maxRows=5&username=${username}`;
 
   return fetch(url)
     .then((response) => {
